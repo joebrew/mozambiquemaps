@@ -85,4 +85,43 @@ ggplot() +
   theme(legend.position = 'none') 
 ```
 
-![](figures/unnamed-chunk-3-1.png)<!-- -->
+![](figures/unnamed-chunk-3-1.png)
+
+Version highlighting Maputo province
+
+``` r
+# Identify which index is Maputo province
+index <- which(sort(unique(moz_fortified$id)) == 'Maputo')
+# Modify the colors accordingly
+cols[index] <- 'red'
+# Plot
+ggplot() +
+  geom_polygon(data = moz_fortified, 
+               aes(fill = id,
+                   group = group,
+                   x = long,
+                   y = lat),
+               color = 'black',
+               lwd = 0.1) +
+  geom_text(data = coords,
+            aes(x = long,
+                y = lat,
+                label = label),
+            alpha = 0.6) +
+  scale_fill_manual(name = '',
+                    values = cols) +
+  geom_polygon(data = combined,
+               aes(group = group,
+                   x = long,
+                   y = lat),
+               fill = 'tan',
+               color = 'black', 
+               alpha = 0.6,
+               lwd = 0.1) +
+  coord_map(xlim = c(30, 43),
+                  ylim = c(-27, -10.5)) +
+  theme_map() +
+  theme(legend.position = 'none') 
+```
+
+![](figures/unnamed-chunk-4-1.png)
