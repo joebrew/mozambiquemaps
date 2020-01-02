@@ -1,5 +1,25 @@
+---
+title: ""
+output: github_document
+---
 
-``` r
+
+```{r setup, include=FALSE, echo = FALSE}
+# Basic knitr options
+library(knitr)
+opts_chunk$set(comment = NA, 
+               echo = TRUE, 
+               warning = FALSE, 
+               message = FALSE, 
+               error = TRUE, 
+               cache = FALSE,
+               # fig.width = 8.64,
+               # fig.height = 4.86,
+               fig.path = 'figures/')
+```
+
+
+```{r}
 # Load packages
 library(tidyverse)
 library(raster)
@@ -7,7 +27,7 @@ library(ggthemes)
 library(ggrepel)
 ```
 
-``` r
+```{r}
 # Get Mozambique data
 moz1 <- getData(country = 'MOZ', level = 1)
 # Trim the columns
@@ -35,7 +55,7 @@ combined <- fortify(combined, region = 'NAME_1')
 moz_fortified <- fortify(moz1, region = 'NAME_1')
 ```
 
-``` r
+```{r}
 # Define the colors for the Mozambican provinces
 cols <- colorRampPalette(RColorBrewer::brewer.pal(n = 9, name = 'RdYlBu'))(20)
 cols <- cols[5:(5+length(unique(moz_fortified$id)))]
@@ -85,4 +105,4 @@ ggplot() +
   theme(legend.position = 'none') 
 ```
 
-![](figures/unnamed-chunk-3-1.png)<!-- -->
+
